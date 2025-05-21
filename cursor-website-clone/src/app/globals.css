@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+
+    /* Cursor website specific colors */
+    --cursor-purple: 271 91% 65%;
+    --cursor-red: 0 91% 60%;
+    --cursor-orange: 30 100% 60%;
+    --cursor-green: 142 69% 52%;
+    --cursor-blue: 210 100% 60%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Improve focus styling for keyboard navigation */
+  :focus {
+    @apply outline-none;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Custom gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg,
+    hsl(var(--cursor-purple)),
+    hsl(var(--cursor-red)),
+    hsl(var(--cursor-orange)),
+    hsl(var(--cursor-green)),
+    hsl(var(--cursor-blue)));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.dark .gradient-hero {
+  background: linear-gradient(135deg,
+    hsl(var(--cursor-purple)/0.8),
+    hsl(var(--cursor-red)/0.8),
+    hsl(var(--cursor-orange)/0.8),
+    hsl(var(--cursor-green)/0.8),
+    hsl(var(--cursor-blue)/0.8));
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.gradient-feature {
+  background: linear-gradient(135deg,
+    hsl(var(--cursor-purple)),
+    hsl(var(--cursor-red)),
+    hsl(var(--cursor-orange)));
+  background-size: 300% 300%;
+  animation: gradient-shift 10s ease infinite alternate;
+}
+
+.dark .gradient-feature {
+  background: linear-gradient(135deg,
+    hsl(var(--cursor-purple)/0.8),
+    hsl(var(--cursor-red)/0.8),
+    hsl(var(--cursor-orange)/0.8));
+  background-size: 300% 300%;
+  animation: gradient-shift 10s ease infinite alternate;
+}
+
+.gradient-card {
+  background: linear-gradient(135deg,
+    hsla(var(--cursor-purple), 0.1),
+    hsla(var(--cursor-blue), 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(10px);
+}
+
+.dark .gradient-card {
+  background: linear-gradient(135deg,
+    hsla(var(--cursor-purple), 0.2),
+    hsla(var(--cursor-blue), 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.noise-overlay {
+  background-image: url('https://ext.same-assets.com/3333433297/354914685.webp');
+  background-repeat: repeat;
+  opacity: 0.05;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dark .noise-overlay {
+  opacity: 0.1;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom container for consistent sections */
+.container-cursor {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+}
+
+/* Smooth transitions for theme changing */
+.transition-theme {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, text-decoration-color 0.3s ease;
+}
